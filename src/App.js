@@ -15,21 +15,22 @@ function App() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        async function fetchProducts() {
-            try {
-                const response = await fetch("https://v2.api.noroff.dev/online-shop");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch products");
-                }
-                const data = await response.json();
-                setProducts(data.data);
-            } catch (err) {
-                console.error("Failed to fetch products:", err);
-            }
-        }
-
-        fetchProducts();
-    }, []);
+      async function fetchProducts() {
+          try {
+              const response = await fetch("https://v2.api.noroff.dev/online-shop");
+              if (!response.ok) {
+                  throw new Error("Failed to fetch products");
+              }
+              const data = await response.json();
+              console.log("Fetched products:", data.data);
+              setProducts(data.data);
+          } catch (err) {
+              console.error("Failed to fetch products:", err);
+          }
+      }
+  
+      fetchProducts();
+  }, []);
 
     return (
         <Router>

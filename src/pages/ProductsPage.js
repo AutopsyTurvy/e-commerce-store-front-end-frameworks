@@ -1,7 +1,7 @@
 
 
 
-// ProductsPage.js
+// ProductsPage.js (Current Landing/ Home Page)
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ function ProductsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    
     useEffect(() => {
         async function fetchProducts() {
             try {
@@ -33,24 +34,43 @@ function ProductsPage() {
     if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
 
-    const firstDiscountedItem = products.find(
-        (product) => product.discountedPrice < product.price
+   
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+
+ 
+    const shuffledProducts = shuffleArray(products);
+
+   
+    const randomDiscountedProduct = shuffledProducts.find(product => product.discountedPrice < product.price);
+    const randomHighestRatedProduct = shuffledProducts.find(
+        product => product.rating >= 4 && product.id !== randomDiscountedProduct?.id
+    );
+    const randomAllProduct = shuffledProducts.find(
+        product => product.id !== randomDiscountedProduct?.id && product.id !== randomHighestRatedProduct?.id
     );
 
-    const highestRatedItem = products.reduce((prev, current) =>
-        current.rating > prev.rating ? current : prev
-    );
+  
+    console.log("Random Discounted Product:", randomDiscountedProduct);
+    console.log("Random Highest Rated Product:", randomHighestRatedProduct);
+    console.log("Random All Product:", randomAllProduct);
 
     return (
         <div>
-            <h1>Welcome to the Shop!</h1>
+            <h1>Welcome to BidNest!</h1>
             <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "1rem" }}>
-                {/* Left section id for the discounted items--  */}
+       
                 <div style={{ position: "relative" }}>
                     <Link to="/discounted-items">
                         <img
-                            src={firstDiscountedItem?.image.url || "default-image.jpg"}
-                            alt={firstDiscountedItem?.image.alt || "Discounted Items"}
+                            src={randomDiscountedProduct?.image?.url || "default-image.jpg"}
+                            alt={randomDiscountedProduct?.image?.alt || "Discounted Items"}
                             style={{ width: "100%", height: "auto", borderRadius: "8px" }}
                         />
                         <div
@@ -73,14 +93,14 @@ function ProductsPage() {
                     </Link>
                 </div>
 
-                {/* Right Section */}
+               
                 <div style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "1rem" }}>
-                    {/* Highest Rated Items */}
+                    
                     <div style={{ position: "relative" }}>
                         <Link to="/highest-rated-items">
                             <img
-                                src={highestRatedItem?.image.url || "default-image.jpg"}
-                                alt={highestRatedItem?.image.alt || "Highest Rated Items"}
+                                src={randomHighestRatedProduct?.image?.url || "default-image.jpg"}
+                                alt={randomHighestRatedProduct?.image?.alt || "Highest Rated Items"}
                                 style={{ width: "100%", height: "auto", borderRadius: "8px" }}
                             />
                             <div
@@ -103,12 +123,12 @@ function ProductsPage() {
                         </Link>
                     </div>
 
-                    {/* Browse All Items */}
+               
                     <div style={{ position: "relative" }}>
                         <Link to="/all-items">
                             <img
-                                src="path-to-browse-all-image.jpg"
-                                alt="Browse All Items"
+                                src={randomAllProduct?.image?.url || "default-image.jpg"}
+                                alt={randomAllProduct?.image?.alt || "Browse All Items"}
                                 style={{ width: "100%", height: "auto", borderRadius: "8px" }}
                             />
                             <div
