@@ -1,3 +1,9 @@
+
+
+
+// HighestRatedItemsPage.js
+
+
 import React from "react";
 
 function HighestRatedItemsPage({ products }) {
