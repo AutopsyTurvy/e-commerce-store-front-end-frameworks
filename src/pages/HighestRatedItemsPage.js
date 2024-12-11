@@ -5,11 +5,16 @@
 
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 function HighestRatedItemsPage({ products }) {
     const highestRatedItems = products
         .filter((product) => product.rating >= 4)
         .sort((a, b) => b.rating - a.rating);
+
+    if (!highestRatedItems || highestRatedItems.length === 0) {
+        return <p>No highest-rated items available.</p>;
+    }
 
     return (
         <div>
@@ -17,8 +22,14 @@ function HighestRatedItemsPage({ products }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
                 {highestRatedItems.map((item) => (
                     <div key={item.id} style={{ border: "1px solid #ccc", padding: "1rem" }}>
-                        <img src={item.image.url} alt={item.image.alt} style={{ width: "100%" }} />
-                        <h2>{item.title}</h2>
+                        <Link to={`/product/${item.id}`}>
+                            <img
+                                src={item.image.url}
+                                alt={item.image.alt}
+                                style={{ width: "100%" }}
+                            />
+                            <h2>{item.title}</h2>
+                        </Link>
                         <p>Rating: {item.rating}</p>
                     </div>
                 ))}
@@ -28,3 +39,4 @@ function HighestRatedItemsPage({ products }) {
 }
 
 export default HighestRatedItemsPage;
+

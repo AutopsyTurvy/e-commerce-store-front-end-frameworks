@@ -4,6 +4,7 @@
 
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AllItemsPage({ products = [] }) {
     if (!products || products.length === 0) {
@@ -16,9 +17,11 @@ function AllItemsPage({ products = [] }) {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
                 {products.map((item) => (
                     <div key={item.id} style={{ border: "1px solid #ccc", padding: "1rem" }}>
-                        <img src={item.image.url} alt={item.image.alt} style={{ width: "100%" }} />
-                        <h2>{item.title}</h2>
-                        <p>${item.discountedPrice.toFixed(2)}</p>
+                        <Link to={`/product/${item.id}`}>
+                            <img src={item.image.url} alt={item.image.alt} style={{ width: "100%" }} />
+                            <h2>{item.title}</h2>
+                            <p>${item.discountedPrice.toFixed(2)}</p>
+                        </Link>
                     </div>
                 ))}
             </div>
@@ -27,3 +30,4 @@ function AllItemsPage({ products = [] }) {
 }
 
 export default AllItemsPage;
+
