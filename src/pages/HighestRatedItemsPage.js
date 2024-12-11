@@ -4,13 +4,18 @@
 // HighestRatedItemsPage.js
 
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function HighestRatedItemsPage({ products }) {
-    const highestRatedItems = products
-        .filter((product) => product.rating >= 4)
-        .sort((a, b) => b.rating - a.rating);
+    const [highestRatedItems, setHighestRatedItems] = useState([]);
+
+    useEffect(() => {
+        const filteredAndSorted = products
+            .filter((product) => product.rating >= 4)
+            .sort((a, b) => b.rating - a.rating);
+        setHighestRatedItems(filteredAndSorted);
+    }, [products]);
 
     if (!highestRatedItems || highestRatedItems.length === 0) {
         return <p>No highest-rated items available.</p>;
@@ -39,4 +44,3 @@ function HighestRatedItemsPage({ products }) {
 }
 
 export default HighestRatedItemsPage;
-

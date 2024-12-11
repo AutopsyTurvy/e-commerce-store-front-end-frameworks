@@ -1,19 +1,25 @@
 
 
 
+
+
 // DiscountedItemsPage.js
 
 
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function DiscountedItemsPage({ products }) {
-    const discountedProducts = products.filter(
-        (product) => product.discountedPrice < product.price
-    );
+    const [discountedProducts, setDiscountedProducts] = useState([]);
+
+    useEffect(() => {
+        const filtered = products.filter(product => product.discountedPrice < product.price);
+        setDiscountedProducts(filtered);
+    }, [products]);
 
     if (!discountedProducts || discountedProducts.length === 0) {
-        return <p>No discounted items available. Our apologies! Please check again another time.</p>;
+        return <p>No discounted items available.</p>;
     }
 
     return (
@@ -30,7 +36,12 @@ function DiscountedItemsPage({ products }) {
                             />
                             <h2>{item.title}</h2>
                         </Link>
-                        <p>${item.discountedPrice.toFixed(2)}</p>
+                        <p>
+                            <strong>${item.discountedPrice.toFixed(2)}</strong>{" "}
+                            <span style={{ textDecoration: "line-through", color: "red" }}>
+                                ${item.price.toFixed(2)}
+                            </span>
+                        </p>
                     </div>
                 ))}
             </div>
