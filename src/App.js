@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import ProductsPage from "./pages/ProductsPage";
 import DiscountedItemsPage from "./pages/DiscountedItemsPage";
 import HighestRatedItemsPage from "./pages/HighestRatedItemsPage";
 import AllItemsPage from "./pages/AllItemsPage";
 import ProductDetails from "./pages/ProductDetails";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -28,6 +33,7 @@ function App() {
 
     return (
         <Router>
+            <Header />
             <Routes>
                 <Route path="/" element={<ProductsPage products={products} />} />
                 <Route
@@ -41,8 +47,11 @@ function App() {
                 <Route path="/all-items" element={<AllItemsPage products={products} />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
             </Routes>
+            <Footer /> 
         </Router>
     );
 }
 
 export default App;
+
+
