@@ -1,3 +1,9 @@
+
+
+
+// DiscountedItemsPage.js
+
+
 import React from "react";
 
 function DiscountedItemsPage({ products = [] }) {

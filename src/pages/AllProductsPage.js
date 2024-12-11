@@ -1,3 +1,8 @@
+
+
+// AllProductsPage.js
+
+
 import React from "react";
 
 function AllProductsPage({ products }) {

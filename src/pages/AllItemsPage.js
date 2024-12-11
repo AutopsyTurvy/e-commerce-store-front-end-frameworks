@@ -1,3 +1,8 @@
+
+
+// AllItemsPage.js
+
+
 import React from "react";
 
 function AllItemsPage({ products = [] }) {
