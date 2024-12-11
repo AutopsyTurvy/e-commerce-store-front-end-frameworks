@@ -7,11 +7,23 @@
     color: #fff;
 }
 
-.logo a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.5rem;
+.site-title {
+    text-decoration: none; 
+    color: #fff; 
+    font-size: 1.8rem; 
     font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 6em; 
+    height: auto;
+    margin-right: 0.5rem;
 }
 
 .nav-list {
@@ -22,7 +34,7 @@
 }
 
 .nav-list li {
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 .nav-list li a {
@@ -32,6 +44,31 @@
 }
 
 .nav-list li a.active {
-    border-bottom: 2px solid #ffffff; 
+    border-bottom: 2px solid;
+    color: #ffffff;
+}
+
+.nav-list li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-count {
+    color: #fff;
+    font-size: 0.8rem;
     font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }

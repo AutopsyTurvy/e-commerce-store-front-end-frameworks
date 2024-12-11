@@ -1,13 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons"; // Import the cart icon
+import logoImage from "../assets/shopping-cart-bird.png";
 import "./Header.css";
 
-function Header() {
+function Header({ cartCount }) {
     return (
         <header className="header">
             <div className="logo">
-                <i className="fa-solid fa-gavel" style={{ marginRight: "0.5rem", color: "#fff", fontSize: "1.5rem" }}></i>
-                <NavLink to="/">MyShop</NavLink>
+           
+                <img src={logoImage} alt="Logo" className="logo-image" />
+
+               
+                <h1>
+                    <NavLink to="/" className="site-title">
+                        BidNest
+                    </NavLink>
+                </h1>
             </div>
             <nav>
                 <ul className="nav-list">
@@ -28,8 +38,16 @@ function Header() {
                     </li>
                 </ul>
             </nav>
+
+          
+            <div className="cart-icon">
+                <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: "1.5rem", color: "#fff", marginRight: "0.5rem" }} />
+                {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+            </div>
         </header>
     );
 }
 
 export default Header;
+
+
