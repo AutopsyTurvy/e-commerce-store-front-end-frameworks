@@ -57,9 +57,12 @@ function App() {
         });
     };
 
+    const removeFromCart = (id) => {
+        setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    };
+
     return (
         <Router>
-        
             <Layout cartCount={cart.length}>
                 <Routes>
                     <Route path="/" element={<ProductsPage products={products} />} />
@@ -67,7 +70,7 @@ function App() {
                     <Route path="/highest-rated-items" element={<HighestRatedItemsPage products={products} />} />
                     <Route path="/all-items" element={<AllItemsPage products={products} />} />
                     <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} />
-                    <Route path="/cart" element={<CartPage cart={cart} />} />
+                    <Route path="/cart" element={<CartPage cart={cart} removeFromCart={removeFromCart} />} />
                 </Routes>
             </Layout>
         </Router>
