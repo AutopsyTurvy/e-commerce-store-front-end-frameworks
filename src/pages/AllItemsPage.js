@@ -35,11 +35,12 @@ function AllItemsPage({ products = [] }) {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{
-                    width: "100%",
+                    width: "40%",
                     padding: "0.5rem",
+                    marginLeft: "4em",
                     marginBottom: "1rem",
                     fontSize: "1rem",
-                    border: "1px solid #ccc",
+                    border: "2px solid #333",
                     borderRadius: "4px",
                 }}
             />

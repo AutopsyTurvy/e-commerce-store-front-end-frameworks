@@ -1,5 +1,15 @@
+
+
+
+
+
+
+
+/* CartIcon.css */
+
 .cart-icon {
     position: relative;
+    
 }
 
 .cart-count {
@@ -20,6 +30,10 @@
 
 
 .cart-icon-container {
-    position: relative; 
-    display: inline-block; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
 }
+

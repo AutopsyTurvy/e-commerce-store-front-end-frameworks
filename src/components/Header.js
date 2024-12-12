@@ -5,6 +5,8 @@
 // Header.js
 
 
+
+
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,6 +43,11 @@ function Header({ cartCount }) {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")}>
+                            Contact
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/cart" className={({ isActive }) => (isActive ? "active" : "")}>
                             <div className="cart-icon-container">
                                 <FontAwesomeIcon icon={faCartShopping} />
@@ -55,6 +62,7 @@ function Header({ cartCount }) {
 }
 
 export default Header;
+
 
 
 

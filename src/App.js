@@ -7,7 +7,7 @@
 
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProductsPage from "./pages/ProductsPage";
@@ -16,8 +16,10 @@ import HighestRatedItemsPage from "./pages/HighestRatedItemsPage";
 import AllItemsPage from "./pages/AllItemsPage";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
+import CheckoutSuccessPage from "./pages/CheckoutSuccessPage";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -61,6 +63,10 @@ function App() {
         setCart((prevCart) => prevCart.filter((item) => item.id !== id));
     };
 
+    const clearCart = useCallback(() => {
+        setCart([]);
+    }, []);
+
     return (
         <Router>
             <Layout cartCount={cart.length}>
@@ -71,6 +77,16 @@ function App() {
                     <Route path="/all-items" element={<AllItemsPage products={products} />} />
                     <Route path="/product/:id" element={<ProductDetails addToCart={addToCart} />} />
                     <Route path="/cart" element={<CartPage cart={cart} removeFromCart={removeFromCart} />} />
+                    <Route
+                        path="/checkout-success"
+                        element={
+                            <CheckoutSuccessPage
+                                purchasedItems={cart}
+                                total={cart.reduce((total, item) => total + item.discountedPrice, 0)}
+                                clearCart={clearCart}
+                            />
+                        }/>
+                    <Route path="/contact" element={<ContactPage />} />
                 </Routes>
             </Layout>
         </Router>
@@ -78,10 +94,5 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
 
 

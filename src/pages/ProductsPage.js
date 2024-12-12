@@ -68,8 +68,10 @@ function ProductsPage({ products = [] }) {
                     </Link>
                 </div>
             </div>
-
-           
+    
+            {/* Add separator here */}
+            <hr className="section-separator" />
+    
             <div className="search-bar">
                 <input
                     type="text"
@@ -77,17 +79,17 @@ function ProductsPage({ products = [] }) {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{
-                        width: "100%",
+                        width: "40%",
                         padding: "0.5rem",
                         marginBottom: "1rem",
+                        marginLeft: "4em",
                         fontSize: "1rem",
-                        border: "1px solid #ccc",
+                        border: "2px solid #333",
                         borderRadius: "4px",
                     }}
                 />
             </div>
-
-            
+    
             <section className="products-grid">
                 {filteredProducts.map((item) => (
                     <div key={item.id} className="product-card">
@@ -100,12 +102,12 @@ function ProductsPage({ products = [] }) {
                             <h2>{item.title}</h2>
                             <p>
                                 {item.discountedPrice < item.price && (
-                                    <span style={{ textDecoration: "line-through", color: "red" }}>
+                                    <span style={{ textDecoration: "line-through", color: "red", marginRight: "0.5rem" }}>
                                         ${item.price.toFixed(2)}
-                                    </span>
-                                )}
-                                <strong>${item.discountedPrice.toFixed(2)}</strong>
-                            </p>
+                                        </span>
+                                    )}
+                                    <strong>${item.discountedPrice.toFixed(2)}</strong>
+                                    </p>
                         </Link>
                         {item.tags && (
                             <div className="tags-container">

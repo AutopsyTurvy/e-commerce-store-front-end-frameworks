@@ -36,12 +36,13 @@ function DiscountedItemsPage({ products }) {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    marginBottom: "1rem",
-                    fontSize: "1rem",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
+                    width: "40%",
+                        padding: "0.5rem",
+                        marginBottom: "1rem",
+                        marginLeft: "4em",
+                        fontSize: "1rem",
+                        border: "2px solid #333",
+                        borderRadius: "4px",
                 }}
             />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "1rem" }}>
