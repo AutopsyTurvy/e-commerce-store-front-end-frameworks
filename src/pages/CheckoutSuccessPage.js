@@ -7,54 +7,59 @@
 
 
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./CheckoutSuccessPage.css";
 
 function CheckoutSuccessPage({ purchasedItems, total, clearCart }) {
     const navigate = useNavigate();
+    const [countdown, setCountdown] = useState(5);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            clearCart(); 
+        const timer = setInterval(() => {
+            setCountdown((prev) => prev - 1);
+        }, 1000);
+
+        const redirectTimer = setTimeout(() => {
+            clearCart();
             navigate("/");
         }, 5000);
 
-        return () => clearTimeout(timer); 
+        return () => {
+            clearInterval(timer);
+            clearTimeout(redirectTimer);
+        };
     }, [clearCart, navigate]);
 
     return (
-        <div style={{ textAlign: "center", marginTop: "2rem", padding: "1rem", backgroundColor: "#f9f9f9" }}>
-            <h1 style={{ color: "green" }}>Thank you for your order!</h1>
+        <div className="checkout-success-container">
+            <h1>Thank you for your order!</h1>
             <p>Your order has been successfully placed.</p>
-            <div style={{ margin: "1rem auto", maxWidth: "600px", textAlign: "left" }}>
+            <div className="order-summary">
                 <h2>Order Summary</h2>
                 {purchasedItems.length === 0 ? (
                     <p>No items found.</p>
                 ) : (
-                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                    <ul className="order-items-list">
                         {purchasedItems.map((item, index) => (
-                            <li key={index} style={{ borderBottom: "1px solid #ccc", padding: "0.5rem 0" }}>
+                            <li key={index} className="order-item">
                                 <strong>{item.title}</strong> - ${item.discountedPrice.toFixed(2)}
                             </li>
                         ))}
                     </ul>
                 )}
-                <h3 style={{ marginTop: "1rem" }}>Total: ${total.toFixed(2)}</h3>
+                <h3>Total: ${total.toFixed(2)}</h3>
             </div>
-            <p>You will be redirected to the store in 5 seconds.</p>
-            <p>
-                <a
-                    href="/"
-                    style={{ color: "blue", textDecoration: "underline" }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        clearCart(); 
-                        navigate("/"); 
-                    }}
-                >
-                    Back to Store
-                </a>
-            </p>
+            <p>You will be redirected to the store in <strong>{countdown}</strong> seconds.</p>
+            <button
+                className="back-to-store-button"
+                onClick={() => {
+                    clearCart();
+                    navigate("/");
+                }}
+            >
+                Back to Store
+            </button>
         </div>
     );
 }

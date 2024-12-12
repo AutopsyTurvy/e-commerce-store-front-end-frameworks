@@ -3,39 +3,101 @@
 
 
 
+/* CheckoutSuccessPage.css */
 
 
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
+/* General Container */
+.checkout-success-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1 {
-    color: green;
+/* Title */
+.checkout-success-container h1 {
+    color: #27ae60;
     font-size: 2rem;
     margin-bottom: 1rem;
 }
 
-h2 {
-    margin-top: 1rem;
-    font-size: 1.5rem;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-li {
+/* Paragraph */
+.checkout-success-container p {
     font-size: 1rem;
-    margin: 0.5rem 0;
+    color: #555;
 }
 
-a {
-    color: blue;
+/* Order Summary Section */
+.order-summary {
+    margin-top: 1.5rem;
+    text-align: left;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+/* Order Summary Title */
+.order-summary h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Order Items List */
+.order-items-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.order-item {
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Total Section */
+.order-summary h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/* Back to Store Link */
+.back-to-store-link {
+    color: #3498db;
     text-decoration: underline;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+
+/* Countdown Text */
+.checkout-success-container strong {
+    font-size: 1.2rem;
+    color: #e74c3c;
+}
+
+
+/* Back to Store Button */
+.back-to-store-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-store-button:hover {
+    background-color: #555;
+    transform: translateY(-2px);
 }
