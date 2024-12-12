@@ -17,14 +17,18 @@ import "./Header.css";
 function Header({ cartCount }) {
     return (
         <header className="header">
+            
             <div className="logo">
-                <img src={logoImage} alt="Logo" className="logo-image" />
+                <a href="/" aria-label="Home">
+                <img src={logoImage} alt="BidNest logo" className="logo-image" />
+                </a>
                 <h1>
                     <NavLink to="/" className="site-title">
-                        BidNest
+                    BidNest
                     </NavLink>
-                </h1>
-            </div>
+                    </h1>
+                    </div>
+
             <nav>
                 <ul className="nav-list">
                     <li>

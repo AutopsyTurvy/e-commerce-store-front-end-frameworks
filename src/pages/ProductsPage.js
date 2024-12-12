@@ -13,9 +13,10 @@ import "./ProductsPage.css";
 function ProductsPage({ products = [] }) {
     const [allProducts, setAllProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
-        setAllProducts(products); 
+        setAllProducts(products);
     }, [products]);
 
     const shuffleArray = (array) => {
@@ -33,10 +34,33 @@ function ProductsPage({ products = [] }) {
 
     const shuffledProducts = shuffleArray(products);
 
-    const randomDiscountedProduct = shuffledProducts.find((product) => product.discountedPrice < product.price);
-    const randomHighestRatedProduct = shuffledProducts.find(
-        (product) => product.rating >= 4 && product.id !== randomDiscountedProduct?.id
+    const randomDiscountedProduct = shuffledProducts.find(
+        (product) => product.discountedPrice < product.price
     );
+    const randomHighestRatedProduct = shuffledProducts.find(
+        (product) =>
+            product.rating >= 4 && product.id !== randomDiscountedProduct?.id
+    );
+
+    const handleSearchChange = (e) => {
+        const term = e.target.value;
+        setSearchTerm(term);
+
+        
+        if (term) {
+            const matchedSuggestions = products
+                .filter(
+                    (product) =>
+                        product.title.toLowerCase().includes(term.toLowerCase()) ||
+                        (product.tags &&
+                            product.tags.some((tag) => tag.toLowerCase().includes(term.toLowerCase())))
+                )
+                .slice(0, 5); 
+            setSuggestions(matchedSuggestions);
+        } else {
+            setSuggestions([]);
+        }
+    };
 
     const filteredProducts = allProducts.filter((item) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -56,7 +80,7 @@ function ProductsPage({ products = [] }) {
                         <div className="section-title">Discounted Items</div>
                     </Link>
                 </div>
-    
+
                 <div className="section discounted-section">
                     <Link to="/highest-rated-items">
                         <img
@@ -68,16 +92,15 @@ function ProductsPage({ products = [] }) {
                     </Link>
                 </div>
             </div>
-    
-            {/* Add separator here */}
+
             <hr className="section-separator" />
-    
-            <div className="search-bar">
+
+            <div className="main-search-bar">
                 <input
                     type="text"
                     placeholder="Search products by title or tag..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={handleSearchChange}
                     style={{
                         width: "40%",
                         padding: "0.5rem",
@@ -88,8 +111,17 @@ function ProductsPage({ products = [] }) {
                         borderRadius: "4px",
                     }}
                 />
+                {suggestions.length > 0 && (
+                    <ul className="suggestions-dropdown">
+                        {suggestions.map((item) => (
+                            <li key={item.id}>
+                                <Link to={`/product/${item.id}`}>{item.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
-    
+
             <section className="products-grid">
                 {filteredProducts.map((item) => (
                     <div key={item.id} className="product-card">
@@ -102,12 +134,18 @@ function ProductsPage({ products = [] }) {
                             <h2>{item.title}</h2>
                             <p>
                                 {item.discountedPrice < item.price && (
-                                    <span style={{ textDecoration: "line-through", color: "red", marginRight: "0.5rem" }}>
+                                    <span
+                                        style={{
+                                            textDecoration: "line-through",
+                                            color: "red",
+                                            marginRight: "0.5rem",
+                                        }}
+                                    >
                                         ${item.price.toFixed(2)}
-                                        </span>
-                                    )}
-                                    <strong>${item.discountedPrice.toFixed(2)}</strong>
-                                    </p>
+                                    </span>
+                                )}
+                                <strong>${item.discountedPrice.toFixed(2)}</strong>
+                            </p>
                         </Link>
                         {item.tags && (
                             <div className="tags-container">
@@ -126,4 +164,3 @@ function ProductsPage({ products = [] }) {
 }
 
 export default ProductsPage;
-
