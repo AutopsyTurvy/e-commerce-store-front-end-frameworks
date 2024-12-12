@@ -45,6 +45,14 @@ function ProductDetails({ addToCart }) {
         return null;
     };
 
+    const calculateSavings = () => {
+        if (product.price > product.discountedPrice) {
+            const savings = product.price - product.discountedPrice;
+            return savings.toFixed(2); 
+        }
+        return null;
+    };
+
     return (
         <div className="product-details-container">
             <div className="product-image-container">
@@ -57,36 +65,44 @@ function ProductDetails({ addToCart }) {
             <div className="product-info-container">
                 <h1 className="product-title">{product.title}</h1>
                 <p className="product-description">{product.description}</p>
+                <p className="product-original-price">
+                    Original Price: <span>${product.price.toFixed(2)}</span>
+                </p>
                 <p className="product-price">
-                    Price: <strong>${product.discountedPrice.toFixed(2)}</strong>
+                    Discounted Price: <strong>${product.discountedPrice.toFixed(2)}</strong>
                 </p>
                 {product.price > product.discountedPrice && (
-                    <p className="product-discount">Discount: {calculateDiscount()}</p>
+                    <>
+                        <p className="product-savings">
+                            Discount of: <strong>${calculateSavings()}</strong>
+                        </p>
+                        <p className="product-discount"> {calculateDiscount()}</p>
+                    </>
                 )}
                 <button className="add-to-cart-button" onClick={() => addToCart(product)}>
                     Add to Cart
                 </button>
             </div>
             {product.reviews && product.reviews.length > 0 ? (
-    <div className="product-reviews-container">
-        <h2>Reviews</h2>
-        <ul>
-            {product.reviews.map((review) => (
-                <li key={review.id}>
-                    <p>
-                        <strong>{review.username.replace(/\.$/, "")}</strong>: {review.description}
-                    </p>
-                </li>
-            ))}
-        </ul>
-    </div>
-) : (
-    <p>No reviews available for this product.</p>
-)}
+                <div className="product-reviews-container">
+                    <h2>Reviews</h2>
+                    <ul>
+                        {product.reviews.map((review) => (
+                            <li key={review.id}>
+                                <p>
+                                    <strong>{review.username.replace(/\.$/, "")}</strong>:{" "}
+                                    {review.description}
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <p>No reviews available for this product.</p>
+            )}
         </div>
     );
 }
 
 export default ProductDetails;
-
 
