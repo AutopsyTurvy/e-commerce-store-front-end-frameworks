@@ -10,6 +10,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./ProductGrid.css";
 
 function AllItemsPage({ products = [] }) {
     const [searchTerm, setSearchTerm] = useState("");
@@ -28,46 +29,30 @@ function AllItemsPage({ products = [] }) {
 
     return (
         <div>
-            <h1>All Items</h1>
+            <h1 className="page-header">All Items</h1>
             <input
                 type="text"
+                className="search-bar"
                 placeholder="Search by title or tag..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                    width: "40%",
-                    padding: "0.5rem",
-                    marginLeft: "4em",
-                    marginBottom: "1rem",
-                    fontSize: "1rem",
-                    border: "2px solid #333",
-                    borderRadius: "4px",
-                }}
             />
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "1rem" }}>
+            <div className="products-grid">
                 {filteredProducts.map((item) => (
-                    <div key={item.id} style={{ border: "1px solid #ccc", padding: "1rem" }}>
+                    <div key={item.id} className="product-card">
                         <Link to={`/product/${item.id}`}>
-                            <img src={item.image.url} alt={item.image.alt} style={{ width: "100%" }} />
+                            <img
+                                src={item.image.url}
+                                alt={item.image.alt}
+                                className="product-image"
+                            />
                             <h2>{item.title}</h2>
                             <p>${item.discountedPrice.toFixed(2)}</p>
                         </Link>
-                        {item.tags && item.tags.length > 0 && (
-                            <div style={{ marginTop: "0.5rem" }}>
-                                <strong>Tags:</strong>{" "}
+                        {item.tags && (
+                            <div className="tags-container">
                                 {item.tags.map((tag, index) => (
-                                    <span
-                                        key={index}
-                                        style={{
-                                            display: "inline-block",
-                                            backgroundColor: "#f1f1f1",
-                                            color: "#333",
-                                            fontSize: "0.9rem",
-                                            padding: "0.2rem 0.5rem",
-                                            marginRight: "0.3rem",
-                                            borderRadius: "3px",
-                                        }}
-                                    >
+                                    <span key={index} className="tag">
                                         {tag}
                                     </span>
                                 ))}
@@ -81,5 +66,6 @@ function AllItemsPage({ products = [] }) {
 }
 
 export default AllItemsPage;
+
 
 
