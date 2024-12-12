@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function ProductDetails() {
+function ProductDetails({ addToCart }) {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -42,6 +42,8 @@ function ProductDetails() {
             <p>{product.description}</p>
             <p>Price: ${product.discountedPrice.toFixed(2)}</p>
             <p>Rating: {product.rating}</p>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
+
         </div>
     );
 }

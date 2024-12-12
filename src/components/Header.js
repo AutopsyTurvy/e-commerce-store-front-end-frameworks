@@ -7,8 +7,9 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import logoImage from "../assets/shopping-cart-bird.png";
-import CartIcon from "./CartIcon"; 
 import "./Header.css";
 
 function Header({ cartCount }) {
@@ -39,15 +40,23 @@ function Header({ cartCount }) {
                             Highest Rated
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/cart" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <div className="cart-icon-container">
+                                <FontAwesomeIcon icon={faCartShopping} />
+                                {cartCount > 0 && <span className="cart-count">({cartCount})</span>}
+                            </div>
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
-    
-            <CartIcon cartCount={cartCount} />
         </header>
     );
 }
 
 export default Header;
+
+
 
 
 

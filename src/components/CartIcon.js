@@ -5,21 +5,28 @@
 // CartIcon.js
 
 
-import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import "./CartIcon.css"; 
+import React, { useState } from "react";
+import CartIcon from "./CartIcon";
+import CartPage from "./CartPage";
 
-function CartIcon({ cartCount }) {
+function App() {
+    const [cart, setCart] = useState([]); 
+
+   
+    const addToCart = (item) => {
+        setCart((prevCart) => [...prevCart, item]);
+    };
+
+   
+    const cartCount = cart.length;
+
     return (
-        <div className="cart-icon">
-            <Link to="/checkout">
-                <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: "1.5rem", color: "#fff" }} />
-                {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-            </Link>
+        <div>
+            <CartIcon cartCount={cartCount} />
+            <CartPage cart={cart} />
         </div>
     );
 }
 
-export default CartIcon;
+export default App;
+

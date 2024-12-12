@@ -1,7 +1,10 @@
 
 
 
+
+
 // HighestRatedItemsPage.js
+
 
 
 import React, { useState, useEffect } from "react";
@@ -9,6 +12,7 @@ import { Link } from "react-router-dom";
 
 function HighestRatedItemsPage({ products }) {
     const [highestRatedItems, setHighestRatedItems] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const filteredAndSorted = products
@@ -17,6 +21,11 @@ function HighestRatedItemsPage({ products }) {
         setHighestRatedItems(filteredAndSorted);
     }, [products]);
 
+    const filteredProducts = highestRatedItems.filter((product) =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (product.tags && product.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())))
+    );
+
     if (!highestRatedItems || highestRatedItems.length === 0) {
         return <p>No highest-rated items available.</p>;
     }
@@ -24,8 +33,22 @@ function HighestRatedItemsPage({ products }) {
     return (
         <div>
             <h1>Highest Rated Items</h1>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
-                {highestRatedItems.map((item) => (
+            <input
+                type="text"
+                placeholder="Search highest-rated products via titles and tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                    width: "100%",
+                    padding: "0.5rem",
+                    marginBottom: "1rem",
+                    fontSize: "1rem",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                }}
+            />
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "1rem" }}>
+                {filteredProducts.map((item) => (
                     <div key={item.id} style={{ border: "1px solid #ccc", padding: "1rem" }}>
                         <Link to={`/product/${item.id}`}>
                             <img
@@ -36,6 +59,27 @@ function HighestRatedItemsPage({ products }) {
                             <h2>{item.title}</h2>
                         </Link>
                         <p>Rating: {item.rating}</p>
+                        {item.tags && item.tags.length > 0 && (
+                            <div style={{ marginTop: "0.5rem" }}>
+                                <strong>Tags:</strong>{" "}
+                                {item.tags.map((tag, index) => (
+                                    <span
+                                        key={index}
+                                        style={{
+                                            display: "inline-block",
+                                            backgroundColor: "#f1f1f1",
+                                            color: "#333",
+                                            fontSize: "0.9rem",
+                                            padding: "0.2rem 0.5rem",
+                                            marginRight: "0.3rem",
+                                            borderRadius: "3px",
+                                        }}
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
@@ -44,3 +88,6 @@ function HighestRatedItemsPage({ products }) {
 }
 
 export default HighestRatedItemsPage;
+
+
+

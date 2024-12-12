@@ -8,24 +8,27 @@
 
 .main-page-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    padding: 1rem; 
-    box-sizing: border-box;
+    flex-direction: column; 
+    gap: 2rem; 
+    padding: 1rem;
 }
-
 
 .products-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr; 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: 1rem;
-    width: 80%; 
-    max-width: 1200px; 
-    height: 80%; 
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+    height: 40vh; 
+    align-items: center; 
+    margin-bottom: 2rem;
+    flex-wrap: wrap; 
+    overflow: hidden; 
+    object-fit: contain;
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    padding-top: 1em;
+ 
 }
-
 
 .section {
     position: relative;
@@ -35,14 +38,14 @@
     overflow: hidden; 
     border-radius: 10px;
     background-color: #f5f5f5; 
+    border-radius: 10px;
 }
-
 
 .discounted-section {
     grid-row: span 2; 
     height: 100%;
+    
 }
-
 
 .random-product-image {
     width: 100%;
@@ -50,7 +53,6 @@
     object-fit: cover; 
     border-radius: 10px;
 }
-
 
 .section-title {
     position: absolute;
@@ -64,4 +66,53 @@
     background: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 5px;
+}
+
+/*------------------------ Product Grid and Search Bar -----------------------------*/
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 1rem;
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.no-results {
+    grid-column: span 6; 
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin: 2rem 0;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.tags-container {
+    margin-top: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.3rem;
+    border-radius: 3px;
 }
