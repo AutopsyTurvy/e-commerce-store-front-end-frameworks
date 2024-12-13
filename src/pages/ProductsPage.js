@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./ProductsPage.css";
+import styles from "./ProductsPage.module.css";
 
 function ProductsPage({ products = [] }) {
     const [allProducts, setAllProducts] = useState([]);
@@ -46,7 +46,6 @@ function ProductsPage({ products = [] }) {
         const term = e.target.value;
         setSearchTerm(term);
 
-        
         if (term) {
             const matchedSuggestions = products
                 .filter(
@@ -68,53 +67,45 @@ function ProductsPage({ products = [] }) {
     );
 
     return (
-        <div className="main-page-container">
-            <div className="products-container">
-                <div className="section discounted-section">
+        <div className={styles.mainPageContainer}>
+            <div className={styles.productsContainer}>
+                <div className={`${styles.section} ${styles.discountedSection}`}>
                     <Link to="/discounted-items">
                         <img
                             src={randomDiscountedProduct?.image?.url || "default-image.jpg"}
                             alt={randomDiscountedProduct?.image?.alt || "Discounted Items"}
-                            className="random-product-image"
+                            className={styles.randomProductImage}
                         />
-                        <div className="section-title">Discounted Items</div>
+                        <div className={styles.sectionTitle}>Discounted Items</div>
                     </Link>
                 </div>
 
-                <div className="section discounted-section">
+                <div className={`${styles.section} ${styles.discountedSection}`}>
                     <Link to="/highest-rated-items">
                         <img
                             src={randomHighestRatedProduct?.image?.url || "default-image.jpg"}
                             alt={randomHighestRatedProduct?.image?.alt || "Highest Rated Items"}
-                            className="random-product-image"
+                            className={styles.randomProductImage}
                         />
-                        <div className="section-title">Highest Rated Items</div>
+                        <div className={styles.sectionTitle}>Highest Rated Items</div>
                     </Link>
                 </div>
             </div>
 
-            <hr className="section-separator" />
+            <hr className={styles.sectionSeparator} />
 
-            <div className="main-search-bar">
+            <div className={styles.mainSearchBar}>
                 <input
                     type="text"
                     placeholder="Search products by title or tag..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    style={{
-                        width: "40%",
-                        padding: "0.5rem",
-                        marginBottom: "1rem",
-                        marginLeft: "4em",
-                        fontSize: "1rem",
-                        border: "2px solid #333",
-                        borderRadius: "4px",
-                    }}
+                    className={styles.searchInput}
                 />
                 {suggestions.length > 0 && (
-                    <ul className="suggestions-dropdown">
+                    <ul className={styles.suggestionsDropdown}>
                         {suggestions.map((item) => (
-                            <li key={item.id}>
+                            <li key={item.id} className={styles.suggestionItem}>
                                 <Link to={`/product/${item.id}`}>{item.title}</Link>
                             </li>
                         ))}
@@ -122,25 +113,19 @@ function ProductsPage({ products = [] }) {
                 )}
             </div>
 
-            <section className="products-grid">
+            <section className={styles.productsGrid}>
                 {filteredProducts.map((item) => (
-                    <div key={item.id} className="product-card">
+                    <div key={item.id} className={styles.productCard}>
                         <Link to={`/product/${item.id}`}>
                             <img
                                 src={item.image.url}
                                 alt={item.image.alt}
-                                className="product-image"
+                                className={styles.productImage}
                             />
-                            <h2>{item.title}</h2>
-                            <p>
+                            <h2 className={styles.productTitle}>{item.title}</h2>
+                            <p className={styles.productPrice}>
                                 {item.discountedPrice < item.price && (
-                                    <span
-                                        style={{
-                                            textDecoration: "line-through",
-                                            color: "red",
-                                            marginRight: "0.5rem",
-                                        }}
-                                    >
+                                    <span className={styles.originalPrice}>
                                         ${item.price.toFixed(2)}
                                     </span>
                                 )}
@@ -148,9 +133,9 @@ function ProductsPage({ products = [] }) {
                             </p>
                         </Link>
                         {item.tags && (
-                            <div className="tags-container">
+                            <div className={styles.tagsContainer}>
                                 {item.tags.map((tag, index) => (
-                                    <span key={index} className="tag">
+                                    <span key={index} className={styles.tag}>
                                         {tag}
                                     </span>
                                 ))}
