@@ -68,83 +68,86 @@ function ProductsPage({ products = [] }) {
 
     return (
         <div className={styles.mainPageContainer}>
-            <div className={styles.productsContainer}>
-                <div className={`${styles.section} ${styles.discountedSection}`}>
-                    <Link to="/discounted-items">
-                        <img
-                            src={randomDiscountedProduct?.image?.url || "default-image.jpg"}
-                            alt={randomDiscountedProduct?.image?.alt || "Discounted Items"}
-                            className={styles.randomProductImage}
-                        />
-                        <div className={styles.sectionTitle}>Discounted Items</div>
-                    </Link>
-                </div>
-
-                <div className={`${styles.section} ${styles.discountedSection}`}>
-                    <Link to="/highest-rated-items">
-                        <img
-                            src={randomHighestRatedProduct?.image?.url || "default-image.jpg"}
-                            alt={randomHighestRatedProduct?.image?.alt || "Highest Rated Items"}
-                            className={styles.randomProductImage}
-                        />
-                        <div className={styles.sectionTitle}>Highest Rated Items</div>
-                    </Link>
-                </div>
-            </div>
-
-            <hr className={styles.sectionSeparator} />
-
-            <div className={styles.mainSearchBar}>
-                <input
-                    type="text"
-                    placeholder="Search products by title or tag..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    className={styles.searchInput}
+    <div className={styles.productsContainer}>
+        <div className={`${styles.section} ${styles.discountedSection}`}>
+            <Link to="/discounted-items">
+                <img
+                    src={randomDiscountedProduct?.image?.url || "default-image.jpg"}
+                    alt={randomDiscountedProduct?.image?.alt || "Discounted Items"}
+                    className={styles.randomProductImage}
                 />
-                {suggestions.length > 0 && (
-                    <ul className={styles.suggestionsDropdown}>
-                        {suggestions.map((item) => (
-                            <li key={item.id} className={styles.suggestionItem}>
-                                <Link to={`/product/${item.id}`}>{item.title}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-
-            <section className={styles.productsGrid}>
-                {filteredProducts.map((item) => (
-                    <div key={item.id} className={styles.productCard}>
-                        <Link to={`/product/${item.id}`}>
-                            <img
-                                src={item.image.url}
-                                alt={item.image.alt}
-                                className={styles.productImage}
-                            />
-                            <h2 className={styles.productTitle}>{item.title}</h2>
-                            <p className={styles.productPrice}>
-                                {item.discountedPrice < item.price && (
-                                    <span className={styles.originalPrice}>
-                                        ${item.price.toFixed(2)}
-                                    </span>
-                                )}
-                                <strong>${item.discountedPrice.toFixed(2)}</strong>
-                            </p>
-                        </Link>
-                        {item.tags && (
-                            <div className={styles.tagsContainer}>
-                                {item.tags.map((tag, index) => (
-                                    <span key={index} className={styles.tag}>
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </section>
+                <div className={styles.sectionTitle}>Discounted Items</div>
+            </Link>
         </div>
+
+        <div className={`${styles.section} ${styles.discountedSection}`}>
+            <Link to="/highest-rated-items">
+                <img
+                    src={randomHighestRatedProduct?.image?.url || "default-image.jpg"}
+                    alt={randomHighestRatedProduct?.image?.alt || "Highest Rated Items"}
+                    className={styles.randomProductImage}
+                />
+                <div className={styles.sectionTitle}>Highest Rated Items</div>
+            </Link>
+        </div>
+    </div>
+
+    <hr className={styles.sectionSeparator} />
+
+    <div className={styles.mainSearchBar}>
+        <input
+            type="text"
+            placeholder="Search products by title or tag..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className={styles.searchInput}
+        />
+        {suggestions.length > 0 && (
+            <ul className={styles.suggestionsDropdown}>
+                {suggestions.map((item) => (
+                    <li key={item.id} className={styles.suggestionItem}>
+                        <Link to={`/product/${item.id}`}>{item.title}</Link>
+                    </li>
+                ))}
+            </ul>
+        )}
+    </div>
+
+    <section className={styles.productsGrid}>
+    {filteredProducts.map((item) => (
+        <div key={item.id} className={styles.productCard}>
+            <Link to={`/product/${item.id}`}>
+                <img
+                    src={item.image.url}
+                    alt={item.image.alt}
+                    className={styles.productImage}
+                />
+                <h2 className={styles.productTitle}>{item.title}</h2>
+                <p className={styles.productPrice}>
+                    {item.discountedPrice < item.price && (
+                        <span className={styles.originalPrice}>
+                            ${item.price.toFixed(2)}
+                        </span>
+                    )}
+                    <span className={styles.discountedPrice}>
+                        ${item.discountedPrice.toFixed(2)}
+                    </span>
+                </p>
+            </Link>
+            {item.tags && (
+                <div className={styles.tagsContainer}>
+                    {item.tags.map((tag, index) => (
+                        <span key={index} className={styles.tag}>
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+        </div>
+    ))}
+</section>
+
+</div>
     );
 }
 

@@ -9,7 +9,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./ProductGrid.css";
+import styles from "./ProductGrid.module.css";
 
 function HighestRatedItemsPage({ products }) {
     const [highestRatedItems, setHighestRatedItems] = useState([]);
@@ -33,30 +33,30 @@ function HighestRatedItemsPage({ products }) {
 
     return (
         <div>
-            <h1 className="page-header">Highest Rated Items</h1>
+            <h1 className={styles.pageHeader}>Highest Rated Items</h1>
             <input
                 type="text"
-                className="search-bar"
+                className={styles.searchBar}
                 placeholder="Search highest-rated products by title or tag..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <div className="products-grid">
+            <div className={styles.productsGrid}>
                 {filteredProducts.map((item) => (
-                    <div key={item.id} className="product-card">
+                    <div key={item.id} className={styles.productCard}>
                         <Link to={`/product/${item.id}`}>
                             <img
                                 src={item.image.url}
                                 alt={item.image.alt}
-                                className="product-image"
+                                className={styles.productImage}
                             />
                             <h2>{item.title}</h2>
                         </Link>
                         <p>Rating: {item.rating}</p>
                         {item.tags && (
-                            <div className="tags-container">
+                            <div className={styles.tagsContainer}>
                                 {item.tags.map((tag, index) => (
-                                    <span key={index} className="tag">
+                                    <span key={index} className={styles.tag}>
                                         {tag}
                                     </span>
                                 ))}

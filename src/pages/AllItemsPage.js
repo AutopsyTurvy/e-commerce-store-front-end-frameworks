@@ -10,7 +10,8 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./ProductGrid.css";
+import styles from "./ProductGrid.module.css";
+
 
 function AllItemsPage({ products = [] }) {
     const [searchTerm, setSearchTerm] = useState("");
@@ -29,39 +30,40 @@ function AllItemsPage({ products = [] }) {
 
     return (
         <div>
-            <h1 className="page-header">All Items</h1>
-            <input
-                type="text"
-                className="search-bar"
-                placeholder="Search by title or tag..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className="products-grid">
-                {filteredProducts.map((item) => (
-                    <div key={item.id} className="product-card">
-                        <Link to={`/product/${item.id}`}>
-                            <img
-                                src={item.image.url}
-                                alt={item.image.alt}
-                                className="product-image"
-                            />
-                            <h2>{item.title}</h2>
-                            <p>${item.discountedPrice.toFixed(2)}</p>
-                        </Link>
-                        {item.tags && (
-                            <div className="tags-container">
-                                {item.tags.map((tag, index) => (
-                                    <span key={index} className="tag">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
+    <h1 className={styles.pageHeader}>All Items</h1>
+    <input
+        type="text"
+        className={styles.searchBar}
+        placeholder="Search by title or tag..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    <div className={styles.productsGrid}>
+        {filteredProducts.map((item) => (
+            <div key={item.id} className={styles.productCard}>
+                <Link to={`/product/${item.id}`}>
+                    <img
+                        src={item.image.url}
+                        alt={item.image.alt}
+                        className={styles.productImage}
+                    />
+                    <h2>{item.title}</h2>
+                    <p>${item.discountedPrice.toFixed(2)}</p>
+                </Link>
+                {item.tags && (
+                    <div className={styles.tagsContainer}>
+                        {item.tags.map((tag, index) => (
+                            <span key={index} className={styles.tag}>
+                                {tag}
+                            </span>
+                        ))}
                     </div>
-                ))}
+                )}
             </div>
-        </div>
+        ))}
+    </div>
+</div>
+
     );
 }
 
