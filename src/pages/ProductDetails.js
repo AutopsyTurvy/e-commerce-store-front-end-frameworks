@@ -14,7 +14,7 @@ function ProductDetails({ addToCart }) {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [showAlert, setShowAlert] = useState(false); 
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
         async function fetchProduct() {
@@ -37,8 +37,8 @@ function ProductDetails({ addToCart }) {
 
     const handleAddToCart = () => {
         addToCart(product);
-        setShowAlert(true); 
-        setTimeout(() => setShowAlert(false), 3000); 
+        setShowAlert(true);
+        setTimeout(() => setShowAlert(false), 3000);
     };
 
     if (loading) return <p className="loading-message">Loading product details...</p>;
@@ -61,57 +61,59 @@ function ProductDetails({ addToCart }) {
     };
 
     return (
-        <div className="product-details-container">
-            <div className="product-image-container">
-                <img
-                    src={product.image.url}
-                    alt={product.image.alt}
-                    className="product-details-image"
-                />
-            </div>
-            <div className="product-info-container">
-                <h1 className="product-title">{product.title}</h1>
-                <p className="product-description">{product.description}</p>
-                <p className="product-original-price">
-                    Original Price: <span>${product.price.toFixed(2)}</span>
-                </p>
-                <p className="product-price">
-                    Discounted Price: <strong>${product.discountedPrice.toFixed(2)}</strong>
-                </p>
-                {product.price > product.discountedPrice && (
-                    <>
-                        <p className="product-savings">
-                            Discount of: <strong>${calculateSavings()}</strong>
-                        </p>
-                        <p className="product-discount"> {calculateDiscount()}</p>
-                    </>
+        <div className="page-center-container">
+            <div className="product-details-container">
+                <div className="product-image-container">
+                    <img
+                        src={product.image.url}
+                        alt={product.image.alt}
+                        className="product-details-image"
+                    />
+                </div>
+                <div className="product-info-container">
+                    <h1 className="product-title">{product.title}</h1>
+                    <p className="product-description">{product.description}</p>
+                    <p className="product-original-price">
+                        Original Price: <span>${product.price.toFixed(2)}</span>
+                    </p>
+                    <p className="product-price">
+                        Discounted Price: <strong>${product.discountedPrice.toFixed(2)}</strong>
+                    </p>
+                    {product.price > product.discountedPrice && (
+                        <>
+                            <p className="product-savings">
+                                Discount of: <strong>${calculateSavings()}</strong>
+                            </p>
+                            <p className="product-discount"> {calculateDiscount()}</p>
+                        </>
+                    )}
+                    <button className="add-to-cart-button" onClick={handleAddToCart}>
+                        Add to Cart
+                    </button>
+                </div>
+                {showAlert && (
+                    <div className="alert-message">
+                        <p>{product.title} has been added to your cart!</p>
+                    </div>
                 )}
-                <button className="add-to-cart-button" onClick={handleAddToCart}>
-                    Add to Cart
-                </button>
+                {product.reviews && product.reviews.length > 0 ? (
+                    <div className="product-reviews-container">
+                        <h2>Reviews</h2>
+                        <ul>
+                            {product.reviews.map((review) => (
+                                <li key={review.id}>
+                                    <p>
+                                        <strong>{review.username.replace(/\.$/, "")}</strong>:{" "}
+                                        {review.description}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : (
+                    <p>No reviews available for this product.</p>
+                )}
             </div>
-            {showAlert && (
-                <div className="alert-message">
-                    <p>{product.title} has been added to your cart!</p>
-                </div>
-            )}
-            {product.reviews && product.reviews.length > 0 ? (
-                <div className="product-reviews-container">
-                    <h2>Reviews</h2>
-                    <ul>
-                        {product.reviews.map((review) => (
-                            <li key={review.id}>
-                                <p>
-                                    <strong>{review.username.replace(/\.$/, "")}</strong>:{" "}
-                                    {review.description}
-                                </p>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ) : (
-                <p>No reviews available for this product.</p>
-            )}
         </div>
     );
 }
