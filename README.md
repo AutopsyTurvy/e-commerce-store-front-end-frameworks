@@ -116,7 +116,7 @@ Our goal was to complete an ecommerce site and build on our knowledge of react a
 
 ** Note **
 
-## React was used, but i dod not use any other 
+## React was used for building this project
 
 <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/HTML.svg" width="50" height="50"> <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/CSS.svg" width="50" height="50"> <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/JavaScript.svg" width="50" height="50"> <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/VSCode-Dark.svg" width="50" height="50">
 
@@ -214,7 +214,7 @@ kittyalicerayworth)
 
 
 
-
+# React App Automatic README Additions:
 
 
 # Getting Started with Create React App
