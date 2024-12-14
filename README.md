@@ -1,11 +1,11 @@
 
 ---
 
-![Login Page](./src/assets/HomePageScreenshot.jpeg)
-![Login Page](./src/assets/AllItemsScreenshot.jpeg)
-![Login Page](./src/assets/ProductDetails.jpeg)
-![Login Page](./src/assets/CartScreenshot.jpeg)
-![Login Page](./src/assets/CheckoutSuccessScreenshot.jpeg)
+![Home Page](./src/assets/HomePageScreenshot.jpeg)
+![All Items Page](./src/assets/AllItemsScreenshot.jpeg)
+![Product Details Page](./src/assets/ProductDetails.jpeg)
+![Cart Page](./src/assets/CartScreenshot.jpeg)
+![Checkout Success Page](./src/assets/CheckoutSuccessScreenshot.jpeg)
 
 
 
