@@ -62,7 +62,7 @@ function ContactPage() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100vh", 
+                height: "100vh",
                 margin: "2em", 
             }}
         >
@@ -70,8 +70,10 @@ function ContactPage() {
                 style={{
                     maxWidth: "600px",
                     width: "100%",
-                    padding: "1rem",
+                    padding: "3rem",
                     boxSizing: "border-box",
+                    border: "2px solid #ccc", 
+                    borderRadius: "10px", 
                 }}
             >
                 <h1>Contact Us</h1>
@@ -174,4 +176,3 @@ function ContactPage() {
 }
 
 export default ContactPage;
-
