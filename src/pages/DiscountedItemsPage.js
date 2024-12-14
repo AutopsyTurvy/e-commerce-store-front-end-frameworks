@@ -50,13 +50,14 @@ function DiscountedItemsPage({ products }) {
                             <h2>{item.title}</h2>
                         </Link>
                         <p>
-                            <span className={styles.discountedPrice}>
+                            <span className={styles.newPrice}>
                                 ${item.discountedPrice.toFixed(2)}
-                            </span>{" "}
-                            <span className={styles.originalPrice}>
-                                ${item.price.toFixed(2)}
-                            </span>
-                        </p>
+                                </span>{" "}
+                                <span className={styles.oldPrice}>
+                                    ${item.price.toFixed(2)}
+                                    </span>
+                                    </p>
+
                         {item.tags && (
                             <div className={styles.tagsContainer}>
                                 {item.tags.map((tag, index) => (

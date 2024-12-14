@@ -57,72 +57,121 @@ function ContactPage() {
     };
 
     return (
-        <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
-            <h1>Contact Us</h1>
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <div>
-                    <label htmlFor="fullName">Full Name</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
-                    />
-                    {errors.fullName && <p style={{ color: "red" }}>{errors.fullName}</p>}
-                </div>
-                <div>
-                    <label htmlFor="subject">Subject</label>
-                    <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
-                    />
-                    {errors.subject && <p style={{ color: "red" }}>{errors.subject}</p>}
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
-                    />
-                    {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-                </div>
-                <div>
-                    <label htmlFor="body">Message</label>
-                    <textarea
-                        id="body"
-                        name="body"
-                        value={formData.body}
-                        onChange={handleInputChange}
-                        rows="5"
-                        style={{ width: "100%", padding: "0.5rem", marginTop: "0.5rem" }}
-                    ></textarea>
-                    {errors.body && <p style={{ color: "red" }}>{errors.body}</p>}
-                </div>
-                <button
-                    type="submit"
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh", 
+                margin: "2em", 
+            }}
+        >
+            <div
+                style={{
+                    maxWidth: "600px",
+                    width: "100%",
+                    padding: "1rem",
+                    boxSizing: "border-box",
+                }}
+            >
+                <h1>Contact Us</h1>
+                <form
+                    onSubmit={handleSubmit}
                     style={{
-                        padding: "0.5rem 1rem",
-                        backgroundColor: "green",
-                        color: "white",
-                        border: "none",
-                        cursor: "pointer",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
                     }}
                 >
-                    Submit
-                </button>
-            </form>
+                    <div>
+                        <label htmlFor="fullName">Full Name</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                            style={{
+                                width: "100%",
+                                padding: "0.5rem",
+                                marginTop: "0.5rem",
+                            }}
+                        />
+                        {errors.fullName && (
+                            <p style={{ color: "red" }}>{errors.fullName}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="subject">Subject</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleInputChange}
+                            style={{
+                                width: "100%",
+                                padding: "0.5rem",
+                                marginTop: "0.5rem",
+                            }}
+                        />
+                        {errors.subject && (
+                            <p style={{ color: "red" }}>{errors.subject}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            style={{
+                                width: "100%",
+                                padding: "0.5rem",
+                                marginTop: "0.5rem",
+                            }}
+                        />
+                        {errors.email && (
+                            <p style={{ color: "red" }}>{errors.email}</p>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="body">Message</label>
+                        <textarea
+                            id="body"
+                            name="body"
+                            value={formData.body}
+                            onChange={handleInputChange}
+                            rows="5"
+                            style={{
+                                width: "100%",
+                                padding: "0.5rem",
+                                marginTop: "0.5rem",
+                            }}
+                        ></textarea>
+                        {errors.body && (
+                            <p style={{ color: "red" }}>{errors.body}</p>
+                        )}
+                    </div>
+                    <button
+                        type="submit"
+                        style={{
+                            padding: "0.5rem 1rem",
+                            backgroundColor: "#3498db",
+                            color: "white",
+                            border: "none",
+                            cursor: "pointer",
+                        }}
+                    >
+                        Submit
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
 
 export default ContactPage;
+

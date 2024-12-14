@@ -10,7 +10,7 @@
 /* General Container */
 .checkout-success-container {
     max-width: 800px;
-    margin: 2rem auto;
+    margin: 2rem;
     padding: 2rem;
     border: 1px solid #ddd;
     border-radius: 8px;

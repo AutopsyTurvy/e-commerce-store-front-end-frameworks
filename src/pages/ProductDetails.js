@@ -14,6 +14,7 @@ function ProductDetails({ addToCart }) {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showAlert, setShowAlert] = useState(false); 
 
     useEffect(() => {
         async function fetchProduct() {
@@ -33,6 +34,12 @@ function ProductDetails({ addToCart }) {
 
         fetchProduct();
     }, [id]);
+
+    const handleAddToCart = () => {
+        addToCart(product);
+        setShowAlert(true); 
+        setTimeout(() => setShowAlert(false), 3000); 
+    };
 
     if (loading) return <p className="loading-message">Loading product details...</p>;
     if (error) return <p className="error-message">Error: {error}</p>;
@@ -79,10 +86,15 @@ function ProductDetails({ addToCart }) {
                         <p className="product-discount"> {calculateDiscount()}</p>
                     </>
                 )}
-                <button className="add-to-cart-button" onClick={() => addToCart(product)}>
+                <button className="add-to-cart-button" onClick={handleAddToCart}>
                     Add to Cart
                 </button>
             </div>
+            {showAlert && (
+                <div className="alert-message">
+                    <p>{product.title} has been added to your cart!</p>
+                </div>
+            )}
             {product.reviews && product.reviews.length > 0 ? (
                 <div className="product-reviews-container">
                     <h2>Reviews</h2>
@@ -105,4 +117,3 @@ function ProductDetails({ addToCart }) {
 }
 
 export default ProductDetails;
-

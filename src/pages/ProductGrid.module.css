@@ -1,7 +1,11 @@
 
 
 
+
+
 /* ProductGrid.module.css */
+
+
 
 
 .pageHeader {
@@ -13,11 +17,23 @@
 
 .productsGrid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); 
     gap: 1rem;
     width: 90%;
     margin: 0 auto;
     margin-bottom: 1em;
+}
+
+@media (max-width: 1000px) {
+    .productsGrid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 480px) {
+    .productsGrid {
+        grid-template-columns: 1fr; 
+    }
 }
 
 .productCard {
@@ -68,3 +84,23 @@
     border: 2px solid #333;
     border-radius: 4px;
 }
+
+/* Remove styles from links */
+.productCard a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Old price (crossed out) */
+.oldPrice {
+    color: gray;
+    text-decoration: line-through;
+    margin-right: 0.5rem;
+}
+
+/* New price (in red) */
+.newPrice {
+    color: red;
+    font-weight: bold;
+}
+
