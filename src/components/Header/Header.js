@@ -11,9 +11,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import logoImage from "../assets/shopping-cart-bird.png";
-import "./Header.css";
-import "./HamburgerMenu.css";
+import logoImage from "../../assets/shopping-cart-bird.png"; 
+import "../HamburgerMenu/HamburgerMenu.css"; 
+import "./Header.css"; 
 
 
 function Header({ cartCount }) {
