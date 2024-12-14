@@ -2,11 +2,12 @@
 ---
 
 ![Login Page](./src/assets/HomePageScreenshot.jpeg)
-![Login Page](./images/readme-images/signupimage.jpeg)
-![Login Page](./images/readme-images/landingpageimage.jpeg)
-![Login Page](./images/readme-images/yourprofileimage.jpeg)
-![Login Page](./images/readme-images/createnewlistingimage.jpeg)
-![Login Page](./images/readme-images/allusersimage.jpeg)
+![Login Page](./src/assets/AllItemsScreenshot.jpeg)
+![Login Page](./src/assets/ProductDetails.jpeg)
+![Login Page](./src/assets/CartScreenshot.jpeg)
+![Login Page](./src/assets/CheckoutSuccessScreenshot.jpeg)
+
+
 
 
 
